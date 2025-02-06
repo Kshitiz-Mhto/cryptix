@@ -17,6 +17,9 @@ type Config struct {
 	FromEmailSMTP     string
 	SMTPAddress       string
 	OWNER_EMAIL       string
+
+	JPEG_FORMAT string
+	JPG_FORMAT  string
 }
 
 var Vars = initConfig()
@@ -31,6 +34,8 @@ func initConfig() Config {
 		SMTPAddress:       GetEnv("SMTP_ADDR", "smtp.gmail.com:587"),
 		CLI_NAME:          GetEnv("CLI_NAME", "orcka"),
 		CLI_BINARY_PATH:   GetEnv("CLI_BINARY_PATH", "bin/orcka"),
+		JPEG_FORMAT:       GetEnv("JPEG_FORMAT", "jpeg"),
+		JPG_FORMAT:        GetEnv("JPG_FORMAT", "jpg"),
 	}
 }
 
