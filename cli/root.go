@@ -14,36 +14,26 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
-package cmd
+package cli
 
 import (
 	"fmt"
 	"os"
 
-	"github.com/sirupsen/logrus"
+	"github.com/Kshitiz-Mhto/stegomail/cli/logger"
+	"github.com/Kshitiz-Mhto/stegomail/cli/subcmd"
 	"github.com/spf13/cobra"
 )
 
 var version bool
-var logger = logrus.New()
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "stegomail",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "CLI tool that encrypt messages inside images and facilate secrets communication through mail",
+	Long: `tegoMail is a command-line tool that hides encrypted messages inside images files using Discrete Cosine Transform (DCT) steganography.
+It provides a secure way to embed messages, extract hidden messages, and send/receive stego images via email.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		file, err := os.OpenFile("stegomail.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-		if err == nil {
-			logger.Out = file
-		} else {
-			logger.Info("Failed to log to file, using default stderr")
-		}
 		if version {
 			versionCMD.Run(cmd, args)
 		} else {
@@ -63,11 +53,9 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.AddCommand(versionCMD)
-
+	logger.InitLogger()
+	rootCmd.AddCommand(subcmd.EncodeCmd)
+	rootCmd.AddCommand(subcmd.DecodeCmd)
+	rootCmd.AddCommand(subcmd.SendCmd)
 	rootCmd.Flags().BoolP("version", "v", false, "Version of CLI")
-
-	logger.SetFormatter(&logrus.JSONFormatter{})
-	logger.SetOutput(os.Stdout)
-	logger.SetLevel(logrus.DebugLevel)
 }
