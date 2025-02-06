@@ -46,8 +46,6 @@ var (
 )
 
 func init() {
-	rootCmd.AddCommand(versionCMD)
-
 	versionCMD.Flags().BoolVarP(&quiet, "quiet", "q", false, "Use quiet output for simple output")
 	versionCMD.Flags().BoolVarP(&verbose, "verbose", "v", false, "Use verbose output to see full information")
 }

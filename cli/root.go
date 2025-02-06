@@ -22,6 +22,7 @@ import (
 
 	"github.com/Kshitiz-Mhto/stegomail/cli/logger"
 	"github.com/Kshitiz-Mhto/stegomail/cli/subcmd"
+	"github.com/Kshitiz-Mhto/stegomail/cli/subcmd/keys"
 	"github.com/spf13/cobra"
 )
 
@@ -54,8 +55,11 @@ func Execute() {
 
 func init() {
 	logger.InitLogger()
+	rootCmd.AddCommand(versionCMD)
 	rootCmd.AddCommand(subcmd.EncodeCmd)
 	rootCmd.AddCommand(subcmd.DecodeCmd)
 	rootCmd.AddCommand(subcmd.SendCmd)
+	rootCmd.AddCommand(keys.GenerateKeyCmd)
+
 	rootCmd.Flags().BoolP("version", "v", false, "Version of CLI")
 }
