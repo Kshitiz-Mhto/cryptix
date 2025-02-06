@@ -27,6 +27,7 @@ go.work.sum
 bin
 .idea
 .vscode
-.cobra.yaml
+.cobra.yml
 raw.txt
 stegomail.log
+.keys
