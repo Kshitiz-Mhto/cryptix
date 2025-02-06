@@ -56,7 +56,7 @@ func Execute() {
 func init() {
 	logger.InitLogger()
 	rootCmd.AddCommand(versionCMD)
-	rootCmd.AddCommand(subcmd.EncodeCmd)
+	rootCmd.AddCommand(subcmd.EmbadeCmd)
 	rootCmd.AddCommand(subcmd.DecodeCmd)
 	rootCmd.AddCommand(subcmd.SendCmd)
 	rootCmd.AddCommand(keys.GenerateKeyCmd)

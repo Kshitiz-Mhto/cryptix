@@ -26,7 +26,6 @@ var GenerateKeyCmd = &cobra.Command{
 func runKeyGenerationCmd(cmd *cobra.Command, args []string) {
 	path, _ = cmd.Flags().GetString("path")
 	GenerateRSAKeys(path)
-
 }
 
 func GenerateRSAKeys(path string) {
@@ -105,12 +104,12 @@ func GenerateRSAKeys(path string) {
 		}).Fatal("failed to write public key")
 	}
 
-	utility.Info("RSA key pair generated successfully! at path: %s", absolutePath)
+	utility.Success("RSA key pair generated successfully! at path: %s", absolutePath)
 	logger.Logger.WithFields(logrus.Fields{
 		"path": absolutePath,
 	}).Info("RSA key pair generated successfully!")
 }
 
 func init() {
-	GenerateKeyCmd.Flags().StringVarP(&path, "path", "o", ".", "Path where RSA keys-pairs will be created.")
+	GenerateKeyCmd.Flags().StringVarP(&path, "path", "o", ".", "Path where RSA keys-pairs will be created. [Default path: current directory]")
 }
