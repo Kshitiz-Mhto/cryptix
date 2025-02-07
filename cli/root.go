@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Kshitiz-Mhto/stegomail/cli/logger"
-	"github.com/Kshitiz-Mhto/stegomail/cli/subcmd"
-	"github.com/Kshitiz-Mhto/stegomail/cli/subcmd/keys"
+	"github.com/Kshitiz-Mhto/cryptix/cli/logger"
+	"github.com/Kshitiz-Mhto/cryptix/cli/subcmd"
+	"github.com/Kshitiz-Mhto/cryptix/cli/subcmd/keys"
 	"github.com/spf13/cobra"
 )
 
@@ -30,10 +30,10 @@ var version bool
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "stegomail",
-	Short: "CLI tool that encrypt messages inside images and facilate secrets communication through mail",
-	Long: `tegoMail is a command-line tool that hides encrypted messages inside images files using Discrete Cosine Transform (DCT) steganography.
-It provides a secure way to embed messages, extract hidden messages, and send/receive stego images via email.`,
+	Use:   "cryptix",
+	Short: "Simple CLI tool that encrypt and decrypt messages/text.",
+	Long: `cryptix is a command-line tool that encrypt the given message/text with AES algorithm and
+ AES key is encrypted with RSA public key and the encrypted message only be decrypted using RSA private key.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if version {
 			versionCMD.Run(cmd, args)

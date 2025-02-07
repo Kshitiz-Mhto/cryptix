@@ -16,7 +16,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 package main
 
-import "github.com/Kshitiz-Mhto/stegomail/cli"
+import "github.com/Kshitiz-Mhto/cryptix/cli"
 
 func main() {
 	cli.Execute()
