@@ -8,8 +8,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/Kshitiz-Mhto/stegomail/cli/logger"
-	"github.com/Kshitiz-Mhto/stegomail/utility"
+	"github.com/Kshitiz-Mhto/cryptix/cli/logger"
+	"github.com/Kshitiz-Mhto/cryptix/utility"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
@@ -17,8 +17,8 @@ import (
 var path string
 
 var GenerateKeyCmd = &cobra.Command{
-	Use:     "generate-keys",
-	Aliases: []string{"gen", "create"},
+	Use:     "gen",
+	Aliases: []string{"generate-keys", "gen-key"},
 	Short:   "Generates RSA key pair for encryption and decryption.",
 	Run:     runKeyGenerationCmd,
 }
