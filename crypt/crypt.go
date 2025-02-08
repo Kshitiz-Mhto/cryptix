@@ -26,6 +26,7 @@ type EncryptedData struct {
 }
 
 func HybridEncryption(plaintext []byte, pub *rsa.PublicKey) ([]byte, []byte, error) {
+	logger.Logger.Info("Starting hybrid encryption process")
 	// Generate a random 32-byte AES key.
 	aesKey := make([]byte, 32)
 	if _, err := rand.Read(aesKey); err != nil {
@@ -111,7 +112,7 @@ func EncryptHybridData(encryptedMsg, encryptedAESKey []byte, outputFilePath, out
 		return err
 	}
 
-	utility.Success("Encrypted data successfully!!")
+	utility.Success("Encrypted data file created successfully!!")
 	logger.Logger.Infof("Encrypted data successfully saved to: %s", fullPath)
 	return nil
 }
