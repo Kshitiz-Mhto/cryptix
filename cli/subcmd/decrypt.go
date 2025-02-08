@@ -27,8 +27,8 @@ var (
 var DecodeCmd = &cobra.Command{
 	Use:     "decode",
 	Aliases: []string{"decrypt", "de"},
-	Short:   "Decrypt the encoded message inside the image file.",
-	Example: "cryptix decode --name <file_name> --source <path/to/source_file> --output <path/to/storge_dir> --prikey <path/to/private_key>",
+	Short:   "Decrypt the encoded message from json file.",
+	Example: "cryptix decode --source <path/to/source_file> --name <file_name> --output <path/to/storge_dir> --prikey <path/to/private_key>",
 	Run:     runDecodeSecretsCmd,
 }
 
@@ -41,6 +41,7 @@ func runDecodeSecretsCmd(cmd *cobra.Command, args []string) {
 	// Load private key.
 	privKey, err := crypt.LoadPrivateKey(privateKeyFilePath)
 	if err != nil {
+		utility.Error("%s", err)
 		utility.Info("Aborting operation: %s", utility.Red("Private key file loading"))
 		os.Exit(1)
 	}
@@ -48,7 +49,6 @@ func runDecodeSecretsCmd(cmd *cobra.Command, args []string) {
 	// Decrypt the hybrid-encrypted data.
 	plaintext, err := crypt.HybridDecryption(sourcePath, privKey)
 	if err != nil {
-		utility.Error("%s", err)
 		utility.Info("Aborting operation: %s", utility.Red("Decryption failed"))
 		os.Exit(1)
 	}
@@ -60,7 +60,7 @@ func runDecodeSecretsCmd(cmd *cobra.Command, args []string) {
 		os.Exit(1)
 	}
 
-	if err := os.MkdirAll(absOutputPath, 0700); err != nil {
+	if err := os.MkdirAll(absOutputPath, os.ModePerm); err != nil {
 		utility.Info("Aborting operation: %s", utility.Red("Directory creation"))
 		logger.Logger.WithFields(logrus.Fields{"err": err}).Error("Directory creation")
 		os.Exit(1)

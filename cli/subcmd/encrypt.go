@@ -5,7 +5,6 @@ package subcmd
 
 import (
 	"os"
-	"path/filepath"
 
 	"github.com/Kshitiz-Mhto/cryptix/cli/logger"
 	"github.com/Kshitiz-Mhto/cryptix/crypt"
@@ -24,7 +23,7 @@ var (
 var EmbadeCmd = &cobra.Command{
 	Use:     "encrypt",
 	Aliases: []string{"encode", "en"},
-	Short:   "It helps to endcode the message inside image files using DCT",
+	Short:   "It helps to endcode the message and generate json file that cotain encrypted message and AES key.",
 	Example: "cryptix encode --message <message_content> --output <path/to/> --name <filename> --pubkey <path/to/public_key>",
 	Run:     runEncodingSecretsCmd,
 }
@@ -58,7 +57,7 @@ func runEncodingSecretsCmd(cmd *cobra.Command, args []string) {
 		os.Exit(1)
 	}
 
-	utility.Success("Encryption successful! Encrypted data saved at: %s", filepath.Join(outputFilePath, outputFileName))
+	utility.Success("Encryption successful!!")
 }
 
 func init() {

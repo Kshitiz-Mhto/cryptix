@@ -29,6 +29,7 @@ func runKeyGenerationCmd(cmd *cobra.Command, args []string) {
 }
 
 func GenerateRSAKeys(path string) {
+	logger.Logger.Info("RSA keys generation process started")
 
 	absolutePath, err := filepath.Abs(path)
 	if err != nil {

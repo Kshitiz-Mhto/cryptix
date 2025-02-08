@@ -23,6 +23,7 @@ import (
 	"github.com/Kshitiz-Mhto/cryptix/cli/logger"
 	"github.com/Kshitiz-Mhto/cryptix/cli/subcmd"
 	"github.com/Kshitiz-Mhto/cryptix/cli/subcmd/keys"
+	"github.com/Kshitiz-Mhto/cryptix/cli/subcmd/mail"
 	"github.com/spf13/cobra"
 )
 
@@ -31,9 +32,11 @@ var version bool
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "cryptix",
-	Short: "Simple CLI tool that encrypt and decrypt messages/text.",
-	Long: `cryptix is a command-line tool that encrypt the given message/text with AES algorithm and
- AES key is encrypted with RSA public key and the encrypted message only be decrypted using RSA private key.`,
+	Short: "Simple CLI tool that encrypt and decrypt messages/text for sharing.",
+	Long: `Cryptix is a command-line utility designed to encrypt a given message or text using the AES algorithm. 
+The AES key is itself encrypted with an RSA public key, ensuring that the encrypted message can only be decrypted 
+using the corresponding RSA private key. Additionally, the tool offers an option for sharing the encrypted data securely, 
+allowing recipients with the necessary private key to decrypt and access the original message.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if version {
 			versionCMD.Run(cmd, args)
@@ -58,7 +61,7 @@ func init() {
 	rootCmd.AddCommand(versionCMD)
 	rootCmd.AddCommand(subcmd.EmbadeCmd)
 	rootCmd.AddCommand(subcmd.DecodeCmd)
-	rootCmd.AddCommand(subcmd.SendCmd)
+	rootCmd.AddCommand(mail.SendMailCmd)
 	rootCmd.AddCommand(keys.GenerateKeyCmd)
 
 	rootCmd.Flags().BoolP("version", "v", false, "Version of CLI")
