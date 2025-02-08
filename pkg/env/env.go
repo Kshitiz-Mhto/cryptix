@@ -21,6 +21,7 @@ type Config struct {
 	JPEG_FORMAT string
 	JPG_FORMAT  string
 	TXT_FORMAT  string
+	JSON_FORMAT string
 }
 
 var Vars = initConfig()
@@ -38,6 +39,7 @@ func initConfig() Config {
 		JPEG_FORMAT:       GetEnv("JPEG_FORMAT", ".jpeg"),
 		JPG_FORMAT:        GetEnv("JPG_FORMAT", ".jpg"),
 		TXT_FORMAT:        GetEnv("TXT_FORMAT", ".txt"),
+		JSON_FORMAT:       GetEnv("JSON_FORMAT", ".json"),
 	}
 }
 

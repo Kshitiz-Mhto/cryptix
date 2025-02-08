@@ -1,8 +1,11 @@
 package utility
 
 import (
+	"errors"
 	"fmt"
 	"os"
+	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/gookit/color"
@@ -15,6 +18,21 @@ func GetBuildDate() string {
 		return ""
 	}
 	return info.ModTime().Format(time.RFC3339)
+}
+
+func ValidateFilename(filename string) error {
+	ext := filepath.Ext(filename)
+
+	if ext != "" {
+		return errors.New("invalid filename: extensions are not allowed")
+	}
+
+	// Additional check to prevent filenames like "file."
+	if strings.HasSuffix(filename, ".") {
+		return errors.New("invalid filename: cannot end with a dot")
+	}
+
+	return nil
 }
 
 // Error is the function to handler all error in the Cli
