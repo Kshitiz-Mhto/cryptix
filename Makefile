@@ -1,5 +1,5 @@
 # Variables
-BINARY_NAME = stegomail
+BINARY_NAME = cryptix
 OUTPUT_DIR = bin
 MAIN_FILE = ./main.go
 INSTALL_DIR = $(GOBIN) # Defaults to $HOME/go/bin if GOBIN is unset
