@@ -12,7 +12,7 @@ import (
 )
 
 func GetBuildDate() string {
-	filePath := "bin/orcka"
+	filePath := "bin/cryptix"
 	info, err := os.Stat(filePath)
 	if err != nil {
 		return ""

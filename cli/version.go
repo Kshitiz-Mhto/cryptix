@@ -39,7 +39,7 @@ var (
 			case quiet:
 				fmt.Printf("v%s\n", env.Vars.CLI_VERSION)
 			default:
-				fmt.Printf("dSync CLI v%s\n", env.Vars.CLI_VERSION)
+				fmt.Printf("cryptix CLI v%s\n", env.Vars.CLI_VERSION)
 			}
 		},
 	}
