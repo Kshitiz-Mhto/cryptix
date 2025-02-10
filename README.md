@@ -97,7 +97,7 @@ JSON_FORMAT=.json
 
 ```
 
-# Cryptix Makefile Documentation
+## Cryptix Makefile Documentation
 
 This `Makefile` provides an easy interface to build, test, install, and clean the Cryptix project. It automates common tasks required for the development and deployment of the project.
 
